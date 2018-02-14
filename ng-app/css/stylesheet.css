@@ -1,6 +1,14 @@
+body {
+    box-sizing: border-box;
+}
+
 .wrapper {
     margin: 0 auto;
     width: 90%;
+}
+
+button.btn.btn-default {
+    min-width: 8rem;
 }
 
 @media screen and (min-width: 900px) {

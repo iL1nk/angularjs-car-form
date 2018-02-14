@@ -18,13 +18,7 @@
             <h1>Add your vehicle</h1>
         </div>
     
-        <div class="row" ng-app>
-                <div>
-                    <label>Name:</label>
-                    <input type="text" ng-model="yourName" placeholder="Enter a name here">
-                    <hr>
-                    <h1>Hello {{yourName}}!</h1>
-                </div>
+        <div class="row" ng-app="vehicleListApp" ng-controller="vehicleListCtrl">
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-xs-8">
@@ -38,19 +32,12 @@
                 </div>
 
                 <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                          <h4 class="list-group-item-heading">BMW</h4>
-                          <p class="list-group-item-text">320d</p>
+                        <a ng-if="carList.length" ng-repeat="car in carList | orderBy:'carName'" ng-click="openCarInfo($index)" ng-class="{ active: isCarActive($index) }" href="#" class="list-group-item">
+                          <h4 class="list-group-item-heading">{{car.carName}}</h4>
+                          <p class="list-group-item-text">{{car.carModel}}</p>
                         </a>
-                        <a href="#" class="list-group-item">
-                          <h4 class="list-group-item-heading">Chevrolet</h4>
-                          <p class="list-group-item-text">Camarro</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                          <h4 class="list-group-item-heading">Dodge</h4>
-                          <p class="list-group-item-text">Challenger</p>
-                        </a>
-                        <a href="#" class="list-group-item disabled">
+                        <!-- Message if there is no vehicles saved -->
+                        <a ng-if="!carList.length" href="#" class="list-group-item disabled">
                                 <h4 class="list-group-item-heading">No vehicles here</h4>
                                 <p class="list-group-item-text">Please add your vehicle in the vehicle list</p>
                         </a>
@@ -73,44 +60,37 @@
                     </div>
                 </div>
                 <ul class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="#">Page 1</a></li>
-                    <li role="presentation"><a href="#">Page 2</a></li>
+                    <li role="presentation" id="page1" class="active" ng-click="setActiveTab($event)">
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li role="presentation" id="page2" ng-click="setActiveTab($event)">
+                        <a href="#">Page 2</a>
+                    </li>
                 </ul>
-                <div class="row">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Vehicle ID</th>
-                                <th>Name</th>
-                                <th>Model</th>
-                                <th>Year</th>
-                                <th>Type</th>                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>QWE 34W</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>@mdo</td>                                
-                            </tr>
-                            <tr>
-                                <td>GR3 24S</td>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <td>VBN 23A</td>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="row" ng-if="true">
+                    <label for="basic-url">Your vanity URL</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">Vehicle ID</span>
+                        <input type="text" class="form-control" ng-model="vehicleID" placeholder="Enter your vehicle id">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Vehicle Name</span>
+                        <input type="text" class="form-control" ng-model="vehicleName" placeholder="Enter your vehicle name">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Vehicle Model</span>
+                        <input type="text" class="form-control" ng-model="vehicleName" placeholder="Enter your vehicle model">
+                    </div>
+                </div>
+                <div class="row" ng-if="true">
+                        <div class="input-group">
+                            <span class="input-group-addon">Year of manufacture</span>
+                            <input type="text" class="form-control" ng-model="vehicleYear" placeholder="Enter your vehicle id">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">Vehicle Type</span>
+                            <input type="text" class="form-control" ng-model="vehicleType" placeholder="Enter your vehicle type">
+                        </div>
                 </div>
             </div>
         </div>
@@ -120,5 +100,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/module.js"></script>
 </body>
 </html>
