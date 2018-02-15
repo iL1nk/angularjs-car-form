@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="css/stylesheet.css" rel="stylesheet">
     <!-- Optional theme -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
 </head>
 <body>
@@ -84,6 +84,7 @@
                         </div>
                     </div>
                     <!-- information display module -->
+                    <!-- HTML template could be generated using ng-repeat from the template when one tab would be used -->
                     <div class="display-window window-panel" ng-if="activeWindow.display">
                         <div class="row" ng-show="isActiveTab('page1')">
                             <div class="panel panel-info">
@@ -132,6 +133,7 @@
                     </div>
                     <!-- end of information display module -->
                     <!-- start of add new car window -->
+                    <!-- HTML template could be generated using ng-repeat from the template when one tab would be used -->
                     <div class="edit-window window-panel" ng-if="activeWindow.add">
                         <form ng-submit="addNewVehicle()" class="new-vehicle-form" name="newVehicleForm" novalidate>
                             <h4>Add new vehicle</h4>
@@ -172,6 +174,7 @@
                     </div>
                     <!-- Add new window end -->
                     <!-- start of edit car module -->
+                    <!-- HTML template could be generated using ng-repeat from the template when one tab would be used -->
                     <div class="edit-window window-panel" ng-if="activeWindow.edit">
                         <form ng-submit="saveEdittedVehicle(carItemIndex)" class="new-vehicle-form" name="editVehicleForm" novalidate>
                             <h4>Edit vehicle information</h4>
@@ -219,7 +222,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
     <script src="js/module.js"></script>
 </body>
 </html>

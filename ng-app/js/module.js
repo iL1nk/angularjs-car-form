@@ -85,10 +85,18 @@ var app = angular.module('vehicleListApp', [])
             return $scope.activeTabId === id;
         }
 
+        // clear template data
+        $scope.clearTemplateData = function() {
+            Object.keys($scope.newCarTemplate).forEach((key) => {
+                $scope.newCarTemplate[key] = null;
+            });
+        }
+
         // close the active tab
         $scope.closeActiveWindow = function() {
             $scope.carItemIndex = null;
             $scope.setActiveWindow();
+            $scope.clearTemplateData();
         }
 
         // open new car window
@@ -109,14 +117,10 @@ var app = angular.module('vehicleListApp', [])
                     carType:    $scope.newCarTemplate.carType,
                     vehicleID:  $scope.newCarTemplate.vehicleID,
                 });
+
+                $scope.closeActiveWindow();
+                $scope.clearTemplateData();
             }
-
-            $scope.closeActiveWindow();
-
-            // clear temp
-            Object.keys($scope.newCarTemplate).forEach((key) => {
-                $scope.newCarTemplate[key] = null;
-            });
         };
 
         // open edit acr data window
