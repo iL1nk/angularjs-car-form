@@ -11,6 +11,18 @@ button.btn.btn-default {
     min-width: 8rem;
 }
 
+.window-panel .row {
+    padding-top: 2rem;
+}
+
+.edit-window .input-group {
+    padding-top: 2rem; 
+}
+
+.edit-window span.input-group-addon {
+    min-width: 152px;
+}
+
 @media screen and (min-width: 900px) {
     .wrapper {
         width: 80%;

@@ -25,14 +25,16 @@
                         <h3>Vehicle list</h3>
                     </div>
                     <div class="col-xs-4">
-                        <button type="button" class="btn btn-default">
+                        <button type="button" class="btn btn-default" ng-click="openNewCarWindow()">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add
                         </button>
                     </div>
                 </div>
 
                 <div class="list-group">
-                        <a ng-if="carList.length" ng-repeat="car in carList | orderBy:'carName'" ng-click="openCarInfo($index)" ng-class="{ active: isCarActive($index) }" href="#" class="list-group-item">
+                        <!-- <a ng-if="carList.length" ng-repeat="car in carList | orderBy:'carName'" ng-click="openCarInfo($index)" ng-class="{ active: isCarActive($index) }" href="#" class="list-group-item"> -->
+                        <a ng-if="carList.length" ng-repeat="car in carList" ng-click="openCarInfo($index)" ng-class="{ active: isCarActive($index) }" href="#" class="list-group-item">
+                            
                           <h4 class="list-group-item-heading">{{car.carName}}</h4>
                           <p class="list-group-item-text">{{car.carModel}}</p>
                         </a>
@@ -42,7 +44,9 @@
                                 <p class="list-group-item-text">Please add your vehicle in the vehicle list</p>
                         </a>
                 </div>
-            </div>
+            </div> 
+            <!-- end of first tab -->
+            <!-- Start of second tab -->
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-xs-8">
@@ -53,44 +57,98 @@
                             <button type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
                             </button>
-                            <button type="button" class="btn btn-default">
+                            <button type="button" class="btn btn-default" ng-click="closeActiveWindow()">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close
                             </button>
                         </div>
                     </div>
                 </div>
-                <ul class="nav nav-tabs">
-                    <li role="presentation" id="page1" class="active" ng-click="setActiveTab($event)">
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li role="presentation" id="page2" ng-click="setActiveTab($event)">
-                        <a href="#">Page 2</a>
-                    </li>
-                </ul>
-                <div class="row" ng-if="true">
-                    <label for="basic-url">Your vanity URL</label>
-                    <div class="input-group">
-                        <span class="input-group-addon">Vehicle ID</span>
-                        <input type="text" class="form-control" ng-model="vehicleID" placeholder="Enter your vehicle id">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Vehicle Name</span>
-                        <input type="text" class="form-control" ng-model="vehicleName" placeholder="Enter your vehicle name">
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">Vehicle Model</span>
-                        <input type="text" class="form-control" ng-model="vehicleName" placeholder="Enter your vehicle model">
-                    </div>
-                </div>
-                <div class="row" ng-if="true">
-                        <div class="input-group">
-                            <span class="input-group-addon">Year of manufacture</span>
-                            <input type="text" class="form-control" ng-model="vehicleYear" placeholder="Enter your vehicle id">
+                <div class="form-wrapper">
+
+                    <ul class="nav nav-tabs">
+                        <li role="presentation" id="page1" ng-class="{ active: isActiveTab('page1') }" ng-click="setActiveTab('page1')">
+                            <a href="#">Page 1</a>
+                        </li>
+                        <li role="presentation" id="page2" ng-class="{ active: isActiveTab('page2') }" ng-click="setActiveTab('page2')">
+                            <a href="#">Page 2</a>
+                        </li>
+                    </ul>
+                    <!-- information display module -->
+                    <div class="display-window window-panel" ng-show="activeWindow.display">
+                        <div class="row" ng-if="isActiveTab('page1')">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Vehicle Name</h3>
+                                </div>
+                                <div class="panel-body">
+                                    {{carList[carItemIndex].carName}}
+                                </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Vehicle Model</h3>
+                                </div>
+                                <div class="panel-body">
+                                    {{carList[carItemIndex].carModel}}
+                                </div>
+                            </div>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Vehicle ID</h3>
+                                </div>
+                                <div class="panel-body">
+                                    {{carList[carItemIndex].vehicleID}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Vehicle Type</span>
-                            <input type="text" class="form-control" ng-model="vehicleType" placeholder="Enter your vehicle type">
+                        <div class="row" ng-if="isActiveTab('page2')">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Vehicle Type</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{carList[carItemIndex].carType}}
+                                    </div>
+                                </div>
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Year of manufacture</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{carList[carItemIndex].carYear}}
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- end of information display module -->
+                    <!-- start of edit window -->
+                    <div class="edit-window window-panel" ng-show="activeWindow.add">
+                        <div class="row" ng-if="isActiveTab('page1')">
+                            <div class="input-group">
+                                <span class="input-group-addon">Vehicle ID</span>
+                                <input type="text" class="form-control" ng-model="vehicleID" placeholder="Enter your vehicle id">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Vehicle Name</span>
+                                <input type="text" class="form-control" ng-model="carName" placeholder="Enter your vehicle name">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Vehicle Model</span>
+                                <input type="text" class="form-control" ng-model="carModel" placeholder="Enter your vehicle model">
+                            </div>
                         </div>
+                        <div class="row" ng-if="isActiveTab('page2')">
+                            <div class="input-group">
+                                <span class="input-group-addon">Year of manufacture</span>
+                                <input type="text" class="form-control" ng-model="carYear" placeholder="Enter your vehicle id">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Vehicle Type</span>
+                                <input type="text" class="form-control" ng-model="carType" placeholder="Enter your vehicle type">
+                            </div>
+                        </div>
+                    </div> 
+                    <!-- edit window end -->
                 </div>
             </div>
         </div>
