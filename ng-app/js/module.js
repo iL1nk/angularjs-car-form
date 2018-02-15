@@ -89,4 +89,18 @@ var app = angular.module('vehicleListApp', [])
             $scope.setActiveTab('page1');
             $scope.setActiveWindow('add');
         }
+
+        // adding new vehicle to the array
+        $scope.addNewVehicle = function() {
+            if ($scope.vehicleID != null && $scope.carName != null && $scope.carName != null && $scope.carModel != null && $scope.carYear != null && $scope.carType != null) {
+                //Push the vehicle data to the array of cars
+                $scope.carList.push({
+                    carName:    $scope.carName,
+                    carModel:   $scope.carModel,
+                    carYear:    $scope.carYear,
+                    carType:    $scope.carType,
+                    vehicleID:  $scope.vehicleID,
+                });
+            }
+        };
     });
