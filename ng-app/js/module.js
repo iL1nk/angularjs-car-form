@@ -33,14 +33,6 @@ var app = angular.module('vehicleListApp', [])
             vehicleID:  'A-TEAM',
         }];
 
-        // $scope.displayWindow = [
-        //     'Vehicle ID',
-        //     'Vehicle Name',
-        //     'Vehicle Model',
-        //     'Year of manufacture',
-        //     'Vehicle Type',
-        // ];
-
         $scope.activeWindow = {
             edit: false,
             add: false,
@@ -66,7 +58,7 @@ var app = angular.module('vehicleListApp', [])
 
         $scope.setActiveWindow = function(actionType) {
             Object.keys($scope.activeWindow).forEach((key) => {
-                $scope.activeWindow[key] = key === actionType ? true : false;
+                $scope.activeWindow[key] = key === actionType;
             })
         };
 
@@ -108,7 +100,11 @@ var app = angular.module('vehicleListApp', [])
 
         // adding new vehicle to the array
         $scope.addNewVehicle = function() {
-            if ($scope.newCarTemplate.vehicleID != null && $scope.newCarTemplate.carName != null && $scope.newCarTemplate.carName != null && $scope.newCarTemplate.carModel != null && $scope.newCarTemplate.carYear != null && $scope.newCarTemplate.carType != null) {
+            if (['vehicleID',
+            'carName',
+            'carModel',
+            'carYear',
+            'carType'].every(function(prop){ return $scope.newCarTemplate[prop] != null })) {
                 //Push the vehicle data to the array of cars
                 $scope.carList.push({
                     carName:    $scope.newCarTemplate.carName,
@@ -134,14 +130,14 @@ var app = angular.module('vehicleListApp', [])
         // save editted data and close the window
         $scope.saveEdittedVehicle = function(carIndex) {
             if (carIndex !== false && carIndex !== null) {
-                var isValidated = true;
+                var isValid = true;
                 Object.keys($scope.carList[carIndex]).forEach((key) => {
-                    if (isValidated && $scope.carList[carIndex][key] === undefined) {
-                        isValidated = false;
+                    if (isValid && $scope.carList[carIndex][key] === undefined) {
+                        isValid = false;
                     }
                 });
                 
-                isValidated && $scope.closeActiveWindow();
+                isValid && $scope.closeActiveWindow();
             }
         }
 
