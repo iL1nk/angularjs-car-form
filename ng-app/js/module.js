@@ -100,7 +100,7 @@ var app = angular.module('vehicleListApp', [])
 
         // adding new vehicle to the array
         $scope.addNewVehicle = function() {
-            if ($scope.vehicleID != null && $scope.carName != null && $scope.carName != null && $scope.carModel != null && $scope.carYear != null && $scope.carType != null) {
+            if ($scope.newCarTempate.vehicleID != null && $scope.newCarTempate.carName != null && $scope.newCarTempate.carName != null && $scope.newCarTempate.carModel != null && $scope.newCarTempate.carYear != null && $scope.newCarTempate.carType != null) {
                 //Push the vehicle data to the array of cars
                 $scope.carList.push({
                     carName:    $scope.newCarTempate.carName,
