@@ -47,7 +47,7 @@ var app = angular.module('vehicleListApp', [])
             display: false,
         }
               
-        $scope.newCarTempate = {
+        $scope.newCarTemplate = {
             vehicleID: null,
             carName: null,
             carModel: null,
@@ -56,7 +56,7 @@ var app = angular.module('vehicleListApp', [])
           };
 
         // identify car item to show data info
-        $scope.carItemIndex = null;
+        $scope.carItemIndex = false;
 
         $scope.openCarInfo = function(index) {
             $scope.carItemIndex = index;
@@ -100,15 +100,54 @@ var app = angular.module('vehicleListApp', [])
 
         // adding new vehicle to the array
         $scope.addNewVehicle = function() {
-            if ($scope.newCarTempate.vehicleID != null && $scope.newCarTempate.carName != null && $scope.newCarTempate.carName != null && $scope.newCarTempate.carModel != null && $scope.newCarTempate.carYear != null && $scope.newCarTempate.carType != null) {
+            if ($scope.newCarTemplate.vehicleID != null && $scope.newCarTemplate.carName != null && $scope.newCarTemplate.carName != null && $scope.newCarTemplate.carModel != null && $scope.newCarTemplate.carYear != null && $scope.newCarTemplate.carType != null) {
                 //Push the vehicle data to the array of cars
                 $scope.carList.push({
-                    carName:    $scope.newCarTempate.carName,
-                    carModel:   $scope.newCarTempate.carModel,
-                    carYear:    $scope.newCarTempate.carYear,
-                    carType:    $scope.newCarTempate.carType,
-                    vehicleID:  $scope.newCarTempate.vehicleID,
+                    carName:    $scope.newCarTemplate.carName,
+                    carModel:   $scope.newCarTemplate.carModel,
+                    carYear:    $scope.newCarTemplate.carYear,
+                    carType:    $scope.newCarTemplate.carType,
+                    vehicleID:  $scope.newCarTemplate.vehicleID,
                 });
             }
+
+            $scope.closeActiveWindow();
+
+            // clear temp
+            Object.keys($scope.newCarTemplate).forEach((key) => {
+                $scope.newCarTemplate[key] = null;
+            });
         };
+
+        // open edit acr data window
+        $scope.editVehicle = function(carIndex) {
+            if (carIndex !== false && carIndex !== null) {
+                $scope.setActiveTab('page1');
+                $scope.setActiveWindow('edit');
+            }
+        }
+
+        // save editted data and close the window
+        $scope.saveEdittedVehicle = function(carIndex) {
+            if (carIndex !== false && carIndex !== null) {
+                var isValidated = true;
+                Object.keys($scope.carList[carIndex]).forEach((key) => {
+                    if (isValidated && $scope.carList[carIndex][key] === undefined) {
+                        isValidated = false;
+                    }
+                });
+                
+                isValidated && $scope.closeActiveWindow();
+            }
+        }
+
+        // delete selected vehicle from the list
+        $scope.deleteSelectedVehicle = function(carIndex) {
+            if (carIndex !== false && $scope.carList[carIndex] !== undefined) {
+                $scope.carList.splice(carIndex, 1);
+
+                $scope.closeActiveWindow();
+                $scope.carItemIndex = null;
+            }
+        }
     });
