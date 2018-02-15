@@ -33,7 +33,12 @@
 
                 <div class="list-group">
                         <!-- <a ng-if="carList.length" ng-repeat="car in carList | orderBy:'carName'" ng-click="openCarInfo($index)" ng-class="{ active: isCarActive($index) }" href="#" class="list-group-item"> -->
-                        <a ng-if="carList.length" ng-repeat="car in carList" ng-click="openCarInfo($index)" ng-class="{ active: isCarActive($index) }" href="#" class="list-group-item">
+                        <a ng-if="carList.length"
+                         ng-repeat="car in carList" 
+                         ng-click="openCarInfo($index)" 
+                         ng-class="{ active: isCarActive($index) }" 
+                         href="#" 
+                         class="list-group-item">
                             
                           <h4 class="list-group-item-heading">{{car.carName}}</h4>
                           <p class="list-group-item-text">{{car.carModel}}</p>
@@ -54,13 +59,19 @@
                     </div>
                     <div class="col-xs-6">
                         <div class="btn-group" role="group" aria-label="Default button group">
-                            <button type="button" class="btn btn-default" ng-click="editVehicle(carItemIndex)">
+                            <button type="button" 
+                                class="btn btn-default" 
+                                ng-click="editVehicle(carItemIndex)">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
                             </button>
-                            <button type="button" class="btn btn-default" ng-click="deleteSelectedVehicle(carItemIndex)">
+                            <button type="button" 
+                                class="btn btn-default" 
+                                ng-click="deleteSelectedVehicle(carItemIndex)">
                                     <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete
                             </button>
-                            <button type="button" class="btn btn-default" ng-click="closeActiveWindow()">
+                            <button type="button" 
+                                class="btn btn-default" 
+                                ng-click="closeActiveWindow()">
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Close
                             </button>
                         </div>
@@ -69,11 +80,17 @@
                 <div class="form-wrapper">
 
                     <ul class="nav nav-tabs">
-                        <li role="presentation" id="page1" ng-class="{ active: isActiveTab('page1') }" ng-click="setActiveTab('page1')">
-                            <a href="#">Page 1</a>
+                        <li role="presentation" 
+                            id="page1" 
+                            ng-class="{ active: isActiveTab('page1') }" 
+                            ng-click="setActiveTab('page1')">
+                                <a href="#">Page 1</a>
                         </li>
-                        <li role="presentation" id="page2" ng-class="{ active: isActiveTab('page2') }" ng-click="setActiveTab('page2')">
-                            <a href="#">Page 2</a>
+                        <li role="presentation" 
+                            id="page2" 
+                            ng-class="{ active: isActiveTab('page2') }" 
+                            ng-click="setActiveTab('page2')">
+                                <a href="#">Page 2</a>
                         </li>
                     </ul>
                     <div class="window-panel" ng-if="carItemIndex === false">
@@ -141,28 +158,46 @@
                                 <input type="submit" value="Add New Vehicle" class="btn btn-primary"></input>
                             </div>
                             <div class="row">
-                                <div class="alert alert-danger" role="alert" ng-show="newVehicleForm.$error.required">
+                                <div class="alert alert-danger" 
+                                    role="alert" 
+                                    ng-show="newVehicleForm.$error.required">
                                         <strong>Validation Error</strong> Please fill all the input fields below.
                                 </div>
                             </div>
                             <div class="row" ng-show="isActiveTab('page1')">
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle ID</span>
-                                    <input type="text" class="form-control" ng-model="newCarTemplate.vehicleID" placeholder="Enter your vehicle id" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="newCarTemplate.vehicleID" 
+                                        placeholder="Enter your vehicle id" 
+                                        required>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle Name</span>
-                                    <input type="text" class="form-control" ng-model="newCarTemplate.carName" placeholder="Enter your vehicle name" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="newCarTemplate.carName" 
+                                        placeholder="Enter your vehicle name" 
+                                        required>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle Model</span>
-                                    <input type="text" class="form-control" ng-model="newCarTemplate.carModel" placeholder="Enter your vehicle model" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="newCarTemplate.carModel" 
+                                        placeholder="Enter your vehicle model" 
+                                        required>
                                 </div>
                             </div>
                             <div class="row" ng-show="isActiveTab('page2')">
                                 <div class="input-group">
                                     <span class="input-group-addon">Year of manufacture</span>
-                                    <input type="text" class="form-control" ng-model="newCarTemplate.carYear" placeholder="Enter your vehicle id" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="newCarTemplate.carYear" 
+                                        placeholder="Enter your vehicle id" 
+                                        required>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle Type</span>
@@ -176,38 +211,70 @@
                     <!-- start of edit car module -->
                     <!-- HTML template could be generated using ng-repeat from the template when one tab would be used -->
                     <div class="edit-window window-panel" ng-if="activeWindow.edit">
-                        <form ng-submit="saveEdittedVehicle(carItemIndex)" class="new-vehicle-form" name="editVehicleForm" novalidate>
+                        <form ng-submit="saveEdittedVehicle(carItemIndex)"
+                         class="new-vehicle-form"
+                         name="editVehicleForm" 
+                         novalidate>
                             <h4>Edit vehicle information</h4>
                             <div class="row stick-right">
-                                <input type="submit" value="Save changes" class="btn btn-primary"></input>
+                                <input type="submit"
+                                    value="Save changes" 
+                                    class="btn btn-primary"></input>
                             </div>
                             <div class="row">
-                                <div class="alert alert-danger" role="alert" ng-show="editVehicleForm.$error.required">
+                                <div class="alert alert-danger" 
+                                    role="alert" 
+                                    ng-show="editVehicleForm.$error.required">
                                         <strong>Validation Error</strong> Please fill all the input fields below.
                                 </div>
                             </div>
                             <div class="row" ng-show="isActiveTab('page1')">
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle ID</span>
-                                    <input type="text" class="form-control" ng-model="carList[carItemIndex].vehicleID" placeholder="Enter your vehicle id" value="{{carList[carItemIndex].vehicleID}}" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="carList[carItemIndex].vehicleID" 
+                                        placeholder="Enter your vehicle id" 
+                                        value="{{carList[carItemIndex].vehicleID}}" 
+                                        required>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle Name</span>
-                                    <input type="text" class="form-control" ng-model="carList[carItemIndex].carName" placeholder="Enter your vehicle name" value="{{carList[carItemIndex].carName}}" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="carList[carItemIndex].carName" 
+                                        placeholder="Enter your vehicle name" 
+                                        value="{{carList[carItemIndex].carName}}" 
+                                        required>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle Model</span>
-                                    <input type="text" class="form-control" ng-model="carList[carItemIndex].carModel" placeholder="Enter your vehicle model" value="{{carList[carItemIndex].carModel}}" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="carList[carItemIndex].carModel" 
+                                        placeholder="Enter your vehicle model" 
+                                        value="{{carList[carItemIndex].carModel}}" 
+                                        required>
                                 </div>
                             </div>
                             <div class="row" ng-show="isActiveTab('page2')">
                                 <div class="input-group">
                                     <span class="input-group-addon">Year of manufacture</span>
-                                    <input type="text" class="form-control" ng-model="carList[carItemIndex].carYear" placeholder="Enter your vehicle id" value="{{carList[carItemIndex].carYear}}" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="carList[carItemIndex].carYear" 
+                                        placeholder="Enter your vehicle id" 
+                                        value="{{carList[carItemIndex].carYear}}" 
+                                        required>
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Vehicle Type</span>
-                                    <input type="text" class="form-control" ng-model="carList[carItemIndex].carType" placeholder="Enter your vehicle type"  value="{{carList[carItemIndex].carType}}" required>
+                                    <input type="text" 
+                                        class="form-control" 
+                                        ng-model="carList[carItemIndex].carType" 
+                                        placeholder="Enter your vehicle type"  
+                                        value="{{carList[carItemIndex].carType}}" 
+                                        required>
                                 </div>
                             </div>
                         </form>
