@@ -46,6 +46,14 @@ var app = angular.module('vehicleListApp', [])
             add: false,
             display: false,
         }
+              
+        $scope.newCarTempate = {
+            vehicleID: null,
+            carName: null,
+            carModel: null,
+            carYear: null,
+            carType: null,
+          };
 
         // identify car item to show data info
         $scope.carItemIndex = null;
@@ -95,11 +103,11 @@ var app = angular.module('vehicleListApp', [])
             if ($scope.vehicleID != null && $scope.carName != null && $scope.carName != null && $scope.carModel != null && $scope.carYear != null && $scope.carType != null) {
                 //Push the vehicle data to the array of cars
                 $scope.carList.push({
-                    carName:    $scope.carName,
-                    carModel:   $scope.carModel,
-                    carYear:    $scope.carYear,
-                    carType:    $scope.carType,
-                    vehicleID:  $scope.vehicleID,
+                    carName:    $scope.newCarTempate.carName,
+                    carModel:   $scope.newCarTempate.carModel,
+                    carYear:    $scope.newCarTempate.carYear,
+                    carType:    $scope.newCarTempate.carType,
+                    vehicleID:  $scope.newCarTempate.vehicleID,
                 });
             }
         };
